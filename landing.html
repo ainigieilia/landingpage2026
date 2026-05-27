@@ -391,12 +391,12 @@ footer p{font-size:12px;color:rgba(255,255,255,0.25)}
       <button class="btn-primary" onclick="openModal()">Claim My Free Call ↗</button>
       <button class="btn-secondary" onclick="openModal()">Get Started Today</button>
     </div>
-    <div class="hero-note">No commitment required · We call you within 1 business hour · Live within 48 hours</div>
+    <div class="hero-note">No commitment required · We call you within 1 business hour · Live within 48 hours · 🏆 30-Day Money-Back Guarantee</div>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="hs-num">100+</div><div class="hs-label">Trained specialists</div></div>
-      <div class="hero-stat"><div class="hs-num">2M+</div><div class="hs-label">Appointments booked</div></div>
-      <div class="hero-stat"><div class="hs-num">16 yrs</div><div class="hs-label">In business</div></div>
-      <div class="hero-stat"><div class="hs-num">$50M+</div><div class="hs-label">Revenue for clients</div></div>
+      <div class="hero-stat"><div class="hs-num" id="stat1">0+</div><div class="hs-label">Trained specialists</div></div>
+      <div class="hero-stat"><div class="hs-num" id="stat2">0M+</div><div class="hs-label">Appointments booked</div></div>
+      <div class="hero-stat"><div class="hs-num" id="stat3">0 yrs</div><div class="hs-label">In business</div></div>
+      <div class="hero-stat"><div class="hs-num" id="stat4">$0M+</div><div class="hs-label">Revenue for clients</div></div>
     </div>
   </div>
 </div>
@@ -952,6 +952,31 @@ function openModal(){document.getElementById('modalOverlay').classList.add('open
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow=''}
 function handleOverlayClick(e){if(e.target===document.getElementById('modalOverlay'))closeModal()}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()})
+
+// COUNTER ANIMATION
+function animateCount(el, target, prefix, suffix, duration) {
+  let start = 0;
+  const increment = target / (duration / 16);
+  const timer = setInterval(function() {
+    start += increment;
+    if (start >= target) { start = target; clearInterval(timer); }
+    el.textContent = prefix + Math.floor(start) + suffix;
+  }, 16);
+}
+
+const statsObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      setTimeout(function(){ animateCount(document.getElementById('stat1'), 100, '', '+', 3200); }, 0);
+      setTimeout(function(){ animateCount(document.getElementById('stat2'), 2, '', 'M+', 3000); }, 400);
+      setTimeout(function(){ animateCount(document.getElementById('stat3'), 16, '', ' yrs', 3100); }, 800);
+      setTimeout(function(){ animateCount(document.getElementById('stat4'), 50, '$', 'M+', 3400); }, 1200);
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+
+statsObserver.observe(document.querySelector('.hero-stats'));
 </script>
 </body>
 </html>
