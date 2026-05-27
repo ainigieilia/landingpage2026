@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Started — NRAdmin.ai</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#FFF9F3;
+  --navy:#0D1B2E;
+  --navy-dark:#081222;
+  --navy-mid:#1A2E4A;
+  --mustard:#E8A020;
+  --mustard-dark:#C8850A;
+  --mustard-pale:#FFF4DC;
+  --white:#FFFFFF;
+  --gray:#6B7280;
+  --border:#E5DDD0;
+  --text:#0D1B2E;
+  --terracotta:#C94F2C;
+  --forest:#1A6B5A;
+  --teal:#1E7068;
+  --teal-bright:#3ABFB5;
+  --green:#16a34a;
+}
+body{font-family:'Cabinet Grotesk',sans-serif;color:var(--text);background:#F8F4EE;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* TOP BAR */
+.top-bar{background:var(--navy);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:0;line-height:1}
+.logo-wm{font-family:'Instrument Serif',serif;font-size:22px;color:var(--white);letter-spacing:-0.5px;line-height:1}
+.logo-wm em{color:var(--mustard);font-style:italic}
+.logo-sub{font-size:8px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-top:2px}
+.top-secure{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.4);font-weight:600}
+.top-phone{font-size:14px;font-weight:800;color:var(--mustard)}
+.top-phone a{color:var(--mustard)}
+
+/* PROGRESS BAR */
+.progress-bar{background:var(--white);border-bottom:1px solid var(--border);padding:16px 5%}
+.progress-inner{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:0}
+.prog-step{display:flex;align-items:center;gap:8px;flex:1}
+.prog-step:last-child{flex:0}
+.prog-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;transition:all 0.3s}
+.prog-num.active{background:var(--mustard);color:var(--navy)}
+.prog-num.done{background:var(--green);color:var(--white)}
+.prog-num.inactive{background:#E5DDD0;color:var(--gray)}
+.prog-label{font-size:12px;font-weight:700;transition:color 0.3s}
+.prog-label.active{color:var(--navy)}
+.prog-label.done{color:var(--green)}
+.prog-label.inactive{color:var(--gray)}
+.prog-line{flex:1;height:2px;background:var(--border);margin:0 8px;transition:background 0.3s}
+.prog-line.done{background:var(--green)}
+
+/* URGENCY STRIP */
+.urgency-strip{background:var(--terracotta);padding:10px 5%;text-align:center;font-size:13px;font-weight:700;color:var(--white);display:flex;align-items:center;justify-content:center;gap:8px}
+.u-dot{width:7px;height:7px;background:var(--white);border-radius:50%;opacity:0.8;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:0.8}50%{opacity:0.3}}
+
+/* MAIN LAYOUT */
+.main{max-width:1100px;margin:0 auto;padding:40px 5%;display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start}
+
+/* LEFT PANEL — steps */
+.left-panel{display:flex;flex-direction:column;gap:0}
+
+/* STEP CARD */
+.step-card{background:var(--white);border:2px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:16px;transition:all 0.3s}
+.step-card.active{border-color:var(--mustard)}
+.step-card.done{border-color:var(--green)}
+.step-card.locked{opacity:0.5;pointer-events:none}
+.step-header{padding:20px 28px;display:flex;align-items:center;gap:14px;cursor:pointer}
+.step-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0}
+.step-icon.active{background:var(--mustard);color:var(--navy)}
+.step-icon.done{background:var(--green);color:var(--white)}
+.step-icon.inactive{background:#F0EBE3;color:var(--gray)}
+.step-title{font-size:16px;font-weight:800;color:var(--navy)}
+.step-subtitle{font-size:13px;color:var(--gray);margin-top:2px}
+.step-body{padding:0 28px 28px;display:none}
+.step-card.active .step-body{display:block}
+
+/* STEP 1: PLAN SELECTION */
+.billing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:24px;background:#F0EBE3;border-radius:100px;padding:6px;width:fit-content}
+.bt-opt{padding:8px 20px;border-radius:100px;font-size:13px;font-weight:800;cursor:pointer;transition:all 0.2s;color:var(--gray)}
+.bt-opt.on{background:var(--navy);color:var(--white)}
+.bt-save{background:var(--green);color:var(--white);font-size:10px;font-weight:900;padding:3px 8px;border-radius:100px;letter-spacing:0.5px}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:8px}
+.plan-card{border:2px solid var(--border);border-radius:14px;padding:20px 16px;cursor:pointer;transition:all 0.2s;position:relative;background:var(--white)}
+.plan-card:hover{border-color:var(--mustard)}
+.plan-card.selected{border-color:var(--mustard);background:var(--mustard-pale)}
+.plan-card.popular{border-color:var(--navy)}
+.plan-popular-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--navy);color:var(--white);font-size:10px;font-weight:900;padding:4px 14px;border-radius:100px;white-space:nowrap;letter-spacing:0.5px;text-transform:uppercase}
+.plan-name{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:6px}
+.plan-price{font-family:'Instrument Serif',serif;font-size:32px;color:var(--navy);line-height:1;margin-bottom:2px}
+.plan-price sup{font-size:16px;vertical-align:super}
+.plan-period{font-size:11px;color:var(--gray);font-weight:600;margin-bottom:12px}
+.plan-annual-price{font-size:11px;color:var(--green);font-weight:700;margin-bottom:12px}
+.plan-features{display:flex;flex-direction:column;gap:6px}
+.pf{display:flex;align-items:flex-start;gap:6px;font-size:12px;color:var(--gray);line-height:1.4}
+.pf-check{color:var(--green);font-weight:900;font-size:13px;flex-shrink:0}
+.plan-select-indicator{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);position:absolute;top:14px;right:14px;transition:all 0.2s;background:var(--white)}
+.plan-card.selected .plan-select-indicator{background:var(--mustard);border-color:var(--mustard)}
+.plan-card.selected .plan-select-indicator::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;font-weight:900;color:var(--navy)}
+.step1-continue{width:100%;background:var(--mustard);color:var(--navy);padding:15px;border-radius:10px;font-size:16px;font-weight:900;border:none;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;transition:all 0.2s;margin-top:16px}
+.step1-continue:hover{background:var(--mustard-dark);color:var(--white)}
+
+/* STEP 2: YOUR INFO */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.fg label{font-size:11px;font-weight:800;color:var(--gray);letter-spacing:0.8px;text-transform:uppercase}
+.fg input,.fg select{padding:13px 16px;border:2px solid var(--border);border-radius:10px;font-size:15px;color:var(--navy);font-family:'Cabinet Grotesk',sans-serif;outline:none;transition:border 0.2s;background:var(--white)}
+.fg input:focus,.fg select:focus{border-color:var(--mustard)}
+.fg input::placeholder{color:#B4B2A9}
+.fg-note{font-size:11px;color:var(--gray);margin-top:-10px;margin-bottom:14px}
+.step2-continue{width:100%;background:var(--navy);color:var(--white);padding:15px;border-radius:10px;font-size:16px;font-weight:900;border:none;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;transition:all 0.2s;margin-top:4px}
+.step2-continue:hover{background:var(--navy-mid)}
+
+/* ANNUAL UPSELL BUMP */
+.annual-bump{background:linear-gradient(135deg,#0D1B2E 0%,#1A2E4A 100%);border-radius:14px;padding:20px;margin-bottom:20px;border:2px solid rgba(232,160,32,0.3);position:relative;overflow:hidden}
+.annual-bump::before{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;background:rgba(232,160,32,0.08);border-radius:50%}
+.ab-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(232,160,32,0.15);border:1px solid rgba(232,160,32,0.3);border-radius:100px;padding:4px 12px;margin-bottom:10px}
+.ab-tag span{color:var(--mustard);font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1px}
+.ab-title{font-family:'Instrument Serif',serif;font-size:20px;color:var(--white);margin-bottom:6px;line-height:1.2}
+.ab-desc{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:14px}
+.ab-savings{display:flex;align-items:baseline;gap:8px;margin-bottom:14px}
+.ab-new-price{font-family:'Instrument Serif',serif;font-size:28px;color:var(--mustard)}
+.ab-old-price{font-size:14px;color:rgba(255,255,255,0.3);text-decoration:line-through}
+.ab-save-badge{background:rgba(22,163,74,0.2);color:#4ade80;font-size:11px;font-weight:900;padding:3px 10px;border-radius:100px;border:1px solid rgba(22,163,74,0.3)}
+.ab-checkbox-row{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+.ab-checkbox{width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s;margin-top:1px}
+.ab-checkbox.checked{background:var(--mustard);border-color:var(--mustard)}
+.ab-checkbox.checked::after{content:'✓';font-size:13px;font-weight:900;color:var(--navy)}
+.ab-checkbox-label{font-size:13px;color:rgba(255,255,255,0.8);font-weight:600;line-height:1.5}
+.ab-checkbox-label strong{color:var(--white)}
+
+/* STEP 3: CONFIRM */
+.confirm-summary{background:#F8F4EE;border-radius:12px;padding:20px;margin-bottom:20px}
+.cs-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.cs-row:last-child{border-bottom:none;font-weight:900;font-size:16px;color:var(--navy)}
+.cs-label{color:var(--gray)}
+.cs-value{color:var(--navy);font-weight:700}
+.cs-row.total .cs-value{color:var(--mustard);font-family:'Instrument Serif',serif;font-size:22px}
+.confirm-btn{width:100%;background:var(--mustard);color:var(--navy);padding:18px;border-radius:12px;font-size:18px;font-weight:900;border:none;cursor:pointer;font-family:'Cabinet Grotesk',sans-serif;transition:all 0.2s;letter-spacing:-0.3px}
+.confirm-btn:hover{background:var(--mustard-dark);color:var(--white);transform:translateY(-1px)}
+.confirm-note{text-align:center;font-size:12px;color:var(--gray);margin-top:10px;line-height:1.6}
+.trust-badges{display:flex;justify-content:center;gap:16px;margin-top:16px;flex-wrap:wrap}
+.tb{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--gray);font-weight:700}
+.tb-icon{font-size:14px}
+
+/* RIGHT PANEL — order summary + social proof */
+.right-panel{position:sticky;top:24px;display:flex;flex-direction:column;gap:16px}
+.summary-card{background:var(--white);border:2px solid var(--border);border-radius:20px;padding:24px}
+.sc-title{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:16px}
+.sc-plan{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.sc-plan-name{font-size:16px;font-weight:800;color:var(--navy)}
+.sc-plan-price{font-family:'Instrument Serif',serif;font-size:24px;color:var(--navy)}
+.sc-features{display:flex;flex-direction:column;gap:8px;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:12px}
+.sc-feat{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray)}
+.sc-feat-check{color:var(--green);font-weight:900}
+.sc-total{display:flex;justify-content:space-between;align-items:center}
+.sc-total-label{font-size:13px;font-weight:700;color:var(--gray)}
+.sc-total-price{font-family:'Instrument Serif',serif;font-size:28px;color:var(--navy)}
+.sc-note{font-size:11px;color:var(--gray);margin-top:6px;line-height:1.5}
+.sc-annual-badge{background:rgba(22,163,74,0.1);border:1px solid rgba(22,163,74,0.2);border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--green);font-weight:700;margin-top:10px}
+
+/* SOCIAL PROOF CARD */
+.proof-card{background:var(--navy);border-radius:20px;padding:24px}
+.pc-stars{color:var(--mustard);font-size:14px;letter-spacing:2px;margin-bottom:10px}
+.pc-quote{font-family:'Instrument Serif',serif;font-size:15px;color:rgba(255,255,255,0.8);line-height:1.7;font-style:italic;margin-bottom:14px}
+.pc-auth{display:flex;align-items:center;gap:10px}
+.pc-photo{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid rgba(232,160,32,0.4)}
+.pc-name{font-size:13px;font-weight:800;color:var(--white)}
+.pc-role{font-size:11px;color:rgba(255,255,255,0.4)}
+
+/* GUARANTEE CARD */
+.guarantee-card{background:var(--mustard-pale);border:2px solid rgba(232,160,32,0.2);border-radius:16px;padding:20px;text-align:center}
+.gc-icon{font-size:32px;margin-bottom:8px}
+.gc-title{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.gc-body{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* SUCCESS SCREEN */
+.success-screen{display:none;text-align:center;background:var(--white);border-radius:20px;padding:56px 40px;border:2px solid var(--green)}
+.success-screen.show{display:block}
+.success-icon{font-size:56px;margin-bottom:16px}
+.success-h{font-family:'Instrument Serif',serif;font-size:36px;color:var(--navy);margin-bottom:12px;letter-spacing:-0.5px}
+.success-p{font-size:16px;color:var(--gray);line-height:1.7;max-width:480px;margin:0 auto 24px}
+.success-detail{background:#F0EBE3;border-radius:12px;padding:20px;max-width:400px;margin:0 auto 24px;text-align:left}
+.sd-row{display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px solid var(--border)}
+.sd-row:last-child{border-bottom:none;font-weight:800;color:var(--navy)}
+.success-note{font-size:13px;color:var(--gray)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .main{grid-template-columns:1fr}
+  .right-panel{position:static}
+  .plans-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .form-row{grid-template-columns:1fr}
+  .progress-bar{padding:12px 4%}
+  .prog-label{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="logo-wrap">
+    <span class="logo-wm">NR<em>Admin.ai</em></span>
+    <span class="logo-sub">Human + AI · Since 2010</span>
+  </div>
+  <div class="top-phone">📞 <a href="tel:8883170830">888-317-0830</a></div>
+  <div class="top-secure">🔒 Secure checkout</div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar">
+  <div class="progress-inner">
+    <div class="prog-step">
+      <div class="prog-num active" id="pn1">1</div>
+      <span class="prog-label active" id="pl1">Choose Plan</span>
+    </div>
+    <div class="prog-line" id="pline1"></div>
+    <div class="prog-step">
+      <div class="prog-num inactive" id="pn2">2</div>
+      <span class="prog-label inactive" id="pl2">Your Info</span>
+    </div>
+    <div class="prog-line" id="pline2"></div>
+    <div class="prog-step">
+      <div class="prog-num inactive" id="pn3">3</div>
+      <span class="prog-label inactive" id="pl3">Confirm</span>
+    </div>
+  </div>
+</div>
+
+<!-- URGENCY -->
+<div class="urgency-strip">
+  <div class="u-dot"></div>
+  Only 3 onboarding spots remaining this month — plans lock in today's pricing
+</div>
+
+<div class="main">
+  <!-- LEFT -->
+  <div class="left-panel">
+
+    <!-- STEP 1: PLAN -->
+    <div class="step-card active" id="step1card">
+      <div class="step-header">
+        <div class="step-icon active" id="si1">1</div>
+        <div>
+          <div class="step-title">Choose your plan</div>
+          <div class="step-subtitle" id="s1sub">Select the plan that fits your call volume</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <!-- Billing toggle -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+          <div class="billing-toggle">
+            <div class="bt-opt" id="btn-monthly" onclick="setBilling('monthly')">Monthly</div>
+            <div class="bt-opt on" id="btn-annual" onclick="setBilling('annual')">Annual <span class="bt-save">SAVE 20%</span></div>
+          </div>
+          <div id="billing-note" style="font-size:12px;color:var(--green);font-weight:700">✓ Annual billing selected — save up to $1,912/yr</div>
+        </div>
+
+        <div class="plans-grid">
+          <!-- Starter -->
+          <div class="plan-card" id="plan-starter" onclick="selectPlan('starter')">
+            <div class="plan-select-indicator" id="ind-starter"></div>
+            <div class="plan-name">Starter</div>
+            <div class="plan-price" id="price-starter"><sup>$</sup>317</div>
+            <div class="plan-period" id="period-starter">/ month, billed annually</div>
+            <div class="plan-annual-price" id="annual-starter">Billed $3,804/yr · Save $796</div>
+            <div class="plan-features">
+              <div class="pf"><span class="pf-check">✓</span>Up to 75 calls/month</div>
+              <div class="pf"><span class="pf-check">✓</span>Live answering, business hours</div>
+              <div class="pf"><span class="pf-check">✓</span>Appointment scheduling</div>
+              <div class="pf"><span class="pf-check">✓</span>1 CRM integration</div>
+              <div class="pf"><span class="pf-check">✓</span>Daily reports</div>
+              <div class="pf"><span class="pf-check">✓</span>Full setup included</div>
+            </div>
+          </div>
+
+          <!-- Growth — most popular -->
+          <div class="plan-card popular selected" id="plan-growth" onclick="selectPlan('growth')">
+            <div class="plan-popular-badge">Most Popular</div>
+            <div class="plan-select-indicator checked" id="ind-growth"></div>
+            <div class="plan-name">Growth</div>
+            <div class="plan-price" id="price-growth"><sup>$</sup>637</div>
+            <div class="plan-period" id="period-growth">/ month, billed annually</div>
+            <div class="plan-annual-price" id="annual-growth">Billed $7,644/yr · Save $1,320</div>
+            <div class="plan-features">
+              <div class="pf"><span class="pf-check">✓</span>Up to 250 calls/month</div>
+              <div class="pf"><span class="pf-check">✓</span>24/7 live + AI combo</div>
+              <div class="pf"><span class="pf-check">✓</span>Lead nurturing & outbound</div>
+              <div class="pf"><span class="pf-check">✓</span>Unlimited CRM integrations</div>
+              <div class="pf"><span class="pf-check">✓</span>Hourly reporting</div>
+              <div class="pf"><span class="pf-check">✓</span>Chat & text support</div>
+              <div class="pf"><span class="pf-check">✓</span>Dedicated account manager</div>
+            </div>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="plan-card" id="plan-enterprise" onclick="selectPlan('enterprise')">
+            <div class="plan-select-indicator" id="ind-enterprise"></div>
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-price" id="price-enterprise">Custom</div>
+            <div class="plan-period" id="period-enterprise">/ month · custom volume</div>
+            <div class="plan-annual-price" id="annual-enterprise">Custom annual pricing available</div>
+            <div class="plan-features">
+              <div class="pf"><span class="pf-check">✓</span>Unlimited call volume</div>
+              <div class="pf"><span class="pf-check">✓</span>Named dedicated agents</div>
+              <div class="pf"><span class="pf-check">✓</span>Custom AI workflows</div>
+              <div class="pf"><span class="pf-check">✓</span>Multi-location support</div>
+              <div class="pf"><span class="pf-check">✓</span>Web & tech integrations</div>
+              <div class="pf"><span class="pf-check">✓</span>Priority 24/7 support</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="step1-continue" onclick="goToStep(2)">Continue to Your Info →</button>
+        <div style="text-align:center;font-size:12px;color:var(--gray);margin-top:10px">No contracts required · Cancel anytime · We do all the setup</div>
+      </div>
+    </div>
+
+    <!-- STEP 2: YOUR INFO -->
+    <div class="step-card locked" id="step2card">
+      <div class="step-header">
+        <div class="step-icon inactive" id="si2">2</div>
+        <div>
+          <div class="step-title">Your information</div>
+          <div class="step-subtitle" id="s2sub">Takes 60 seconds — we call you, no forms after this</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <div class="form-row">
+          <div class="fg"><label>First name</label><input id="fname" type="text" placeholder="Angela" /></div>
+          <div class="fg"><label>Last name</label><input id="lname" type="text" placeholder="Smith" /></div>
+        </div>
+        <div class="fg"><label>Business email</label><input id="email" type="email" placeholder="angela@yourbusiness.com" /></div>
+        <div class="fg"><label>Best phone number</label><input id="phone" type="tel" placeholder="(555) 000-0000" /></div>
+        <div class="fg-note">📞 We'll call this number within 1 business hour to schedule your onboarding.</div>
+        <div class="fg"><label>Company name</label><input id="company" type="text" placeholder="Your Business Name" /></div>
+        <div class="fg">
+          <label>How many calls per day?</label>
+          <select id="callvol">
+            <option value="">Choose an option</option>
+            <option>Fewer than 5</option>
+            <option>5–15</option>
+            <option>15–50</option>
+            <option>50–100</option>
+            <option>Over 100</option>
+          </select>
+        </div>
+        <button class="step2-continue" onclick="goToStep(3)">Review My Order →</button>
+        <div style="text-align:center;font-size:12px;color:var(--gray);margin-top:10px">Your info is private and secure · We never sell your data</div>
+      </div>
+    </div>
+
+    <!-- STEP 3: CONFIRM -->
+    <div class="step-card locked" id="step3card">
+      <div class="step-header">
+        <div class="step-icon inactive" id="si3">3</div>
+        <div>
+          <div class="step-title">Review & confirm</div>
+          <div class="step-subtitle">Almost done — check your details below</div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <!-- ORDER SUMMARY -->
+        <div class="confirm-summary" id="confirm-summary-box">
+          <div class="cs-row"><span class="cs-label">Plan</span><span class="cs-value" id="cs-plan">Growth Plan</span></div>
+          <div class="cs-row"><span class="cs-label">Billing</span><span class="cs-value" id="cs-billing">Annual</span></div>
+          <div class="cs-row"><span class="cs-label">Monthly rate</span><span class="cs-value" id="cs-monthly">$637/mo</span></div>
+          <div class="cs-row total"><span class="cs-label">Due today</span><span class="cs-value" id="cs-total">$7,644</span></div>
+        </div>
+
+        <!-- ANNUAL UPSELL BUMP — only shows if on monthly -->
+        <div class="annual-bump" id="annual-bump-box" style="display:none">
+          <div class="ab-tag"><span>⚡ One-time offer — save before you confirm</span></div>
+          <div class="ab-title">Switch to annual and save <span id="ab-save-amount">$1,320</span> right now.</div>
+          <div class="ab-desc">You're about to lock in monthly billing. For the same service, annual clients pay less per month and get priority onboarding. This offer is only available at checkout — it won't appear again.</div>
+          <div class="ab-savings">
+            <div class="ab-new-price" id="ab-annual-price">$637<span style="font-size:14px;font-family:'Cabinet Grotesk',sans-serif;color:rgba(255,255,255,0.5)">/mo</span></div>
+            <div class="ab-old-price" id="ab-monthly-price">$797/mo</div>
+            <div class="ab-save-badge" id="ab-save-badge">Save $1,320/yr</div>
+          </div>
+          <div class="ab-checkbox-row" onclick="toggleAnnualBump()">
+            <div class="ab-checkbox" id="ab-check"></div>
+            <div class="ab-checkbox-label"><strong>Yes — switch me to annual billing and lock in the lower rate.</strong> Billed as one payment today.</div>
+          </div>
+        </div>
+
+        <button class="confirm-btn" onclick="submitOrder()">🔒 Confirm My Plan — Get Me Started ↗</button>
+        <div class="confirm-note">By confirming you agree to our Terms of Service. No long-term commitment — cancel anytime. Our team will call you within 1 business hour to begin onboarding.</div>
+        <div class="trust-badges">
+          <div class="tb"><span class="tb-icon">🔒</span>Secure & Private</div>
+          <div class="tb"><span class="tb-icon">✓</span>No Hidden Fees</div>
+          <div class="tb"><span class="tb-icon">↩</span>Cancel Anytime</div>
+          <div class="tb"><span class="tb-icon">⚡</span>Live in 48 Hours</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS SCREEN -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">🎉</div>
+      <div class="success-h">You're in. Welcome to NRAdmin.ai.</div>
+      <p class="success-p">Your spot is confirmed. Our team will call you within 1 business hour to start your onboarding. You'll be live within 48 hours.</p>
+      <div class="success-detail" id="success-detail">
+        <div class="sd-row"><span>Plan</span><span id="sd-plan">Growth Plan</span></div>
+        <div class="sd-row"><span>Billing</span><span id="sd-billing">Annual</span></div>
+        <div class="sd-row"><span>Confirmation #</span><span id="sd-conf">#NRA-2026-0001</span></div>
+        <div class="sd-row"><span>Due today</span><span id="sd-total">$7,644</span></div>
+      </div>
+      <p class="success-note">A confirmation has been sent to your email. Questions? Call us at <strong><a href="tel:8883170830">888-317-0830</a></strong></p>
+    </div>
+
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+
+    <!-- ORDER SUMMARY -->
+    <div class="summary-card" id="summary-sidebar">
+      <div class="sc-title">Your Order</div>
+      <div class="sc-plan">
+        <div>
+          <div class="sc-plan-name" id="sb-plan-name">Growth Plan</div>
+          <div style="font-size:12px;color:var(--gray);margin-top:2px" id="sb-billing-label">Billed annually</div>
+        </div>
+        <div class="sc-plan-price" id="sb-plan-price">$637<span style="font-size:13px;font-weight:600;color:var(--gray)">/mo</span></div>
+      </div>
+      <div class="sc-features" id="sb-features">
+        <div class="sc-feat"><span class="sc-feat-check">✓</span>24/7 live + AI receptionist combo</div>
+        <div class="sc-feat"><span class="sc-feat-check">✓</span>Up to 250 calls/month</div>
+        <div class="sc-feat"><span class="sc-feat-check">✓</span>Lead nurturing & outbound follow-up</div>
+        <div class="sc-feat"><span class="sc-feat-check">✓</span>Unlimited CRM integrations</div>
+        <div class="sc-feat"><span class="sc-feat-check">✓</span>Dedicated account manager</div>
+        <div class="sc-feat"><span class="sc-feat-check">✓</span>Full setup by our team</div>
+      </div>
+      <div class="sc-total">
+        <div class="sc-total-label" id="sb-total-label">Total due today</div>
+        <div class="sc-total-price" id="sb-total-price">$7,644</div>
+      </div>
+      <div class="sc-note" id="sb-note">Billed annually · Cancel anytime · No contracts</div>
+      <div class="sc-annual-badge" id="sb-savings-badge">✓ You're saving $1,320 with annual billing</div>
+    </div>
+
+    <!-- SOCIAL PROOF -->
+    <div class="proof-card">
+      <div class="pc-stars">★★★★★</div>
+      <div class="pc-quote">"We went live in two days. Call capture went from 60% to over 90% in month one. Best investment we've made."</div>
+      <div class="pc-auth">
+        <img class="pc-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=72&h=72&fit=crop&crop=face" alt="James M." />
+        <div>
+          <div class="pc-name">James M.</div>
+          <div class="pc-role">Personal Injury Law Firm, LA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUARANTEE -->
+    <div class="guarantee-card">
+      <div class="gc-icon">🏆</div>
+      <div class="gc-title">30-Day Happiness Guarantee</div>
+      <div class="gc-body">If you're not completely satisfied in your first 30 days, we'll refund your first month. No questions, no hoops. We're that confident.</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let selectedPlan = 'growth';
+let billingCycle = 'annual';
+let annualBumpChecked = false;
+
+const planData = {
+  starter: {
+    name: 'Starter Plan',
+    monthly: 397, annual: 317, annualTotal: 3804, annualSave: 796,
+    features: ['Up to 75 calls/month','Live answering, business hours','Appointment scheduling','1 CRM integration','Daily reports','Full setup included']
+  },
+  growth: {
+    name: 'Growth Plan',
+    monthly: 797, annual: 637, annualTotal: 7644, annualSave: 1320,
+    features: ['24/7 live + AI receptionist combo','Up to 250 calls/month','Lead nurturing & outbound follow-up','Unlimited CRM integrations','Dedicated account manager','Full setup by our team']
+  },
+  enterprise: {
+    name: 'Enterprise Plan',
+    monthly: null, annual: null, annualTotal: null, annualSave: null,
+    features: ['Unlimited call volume','Named dedicated agents','Custom AI workflows','Multi-location support','Web & tech integrations','Priority 24/7 support']
+  }
+};
+
+// ─── BILLING TOGGLE ───────────────────────────────────────────────────────────
+function setBilling(cycle) {
+  billingCycle = cycle;
+  document.getElementById('btn-monthly').classList.toggle('on', cycle === 'monthly');
+  document.getElementById('btn-annual').classList.toggle('on', cycle === 'annual');
+  const note = document.getElementById('billing-note');
+  note.textContent = cycle === 'annual' ? '✓ Annual billing selected — save up to $1,912/yr' : 'Switch to annual to save up to $1,912/yr';
+  note.style.color = cycle === 'annual' ? 'var(--green)' : 'var(--gray)';
+  updatePriceDisplays();
+  updateSidebar();
+}
+
+function updatePriceDisplays() {
+  ['starter','growth','enterprise'].forEach(p => {
+    const d = planData[p];
+    const priceEl = document.getElementById('price-' + p);
+    const periodEl = document.getElementById('period-' + p);
+    const annualEl = document.getElementById('annual-' + p);
+    if (p === 'enterprise') {
+      priceEl.innerHTML = 'Custom';
+      periodEl.textContent = '/ month · custom volume';
+      annualEl.textContent = 'Custom annual pricing available';
+      return;
+    }
+    if (billingCycle === 'annual') {
+      priceEl.innerHTML = '<sup>$</sup>' + d.annual;
+      periodEl.textContent = '/ month, billed annually';
+      annualEl.textContent = 'Billed $' + d.annualTotal.toLocaleString() + '/yr · Save $' + d.annualSave.toLocaleString();
+      annualEl.style.color = 'var(--green)';
+    } else {
+      priceEl.innerHTML = '<sup>$</sup>' + d.monthly;
+      periodEl.textContent = '/ month, billed monthly';
+      annualEl.textContent = 'Switch to annual to save $' + d.annualSave + '/yr';
+      annualEl.style.color = 'var(--gray)';
+    }
+  });
+}
+
+// ─── PLAN SELECTION ───────────────────────────────────────────────────────────
+function selectPlan(plan) {
+  selectedPlan = plan;
+  ['starter','growth','enterprise'].forEach(p => {
+    const card = document.getElementById('plan-' + p);
+    const ind = document.getElementById('ind-' + p);
+    card.classList.remove('selected');
+    ind.classList.remove('checked');
+    ind.innerHTML = '';
+  });
+  document.getElementById('plan-' + plan).classList.add('selected');
+  const ind = document.getElementById('ind-' + plan);
+  ind.classList.add('checked');
+  ind.innerHTML = '';
+  updateSidebar();
+}
+
+// ─── SIDEBAR UPDATE ───────────────────────────────────────────────────────────
+function updateSidebar() {
+  const d = planData[selectedPlan];
+  document.getElementById('sb-plan-name').textContent = d.name;
+
+  if (selectedPlan === 'enterprise') {
+    document.getElementById('sb-plan-price').innerHTML = 'Custom';
+    document.getElementById('sb-billing-label').textContent = 'Custom pricing';
+    document.getElementById('sb-total-label').textContent = 'Contact for pricing';
+    document.getElementById('sb-total-price').textContent = 'Custom';
+    document.getElementById('sb-note').textContent = 'Our team will build a custom quote for you';
+    document.getElementById('sb-savings-badge').style.display = 'none';
+  } else if (billingCycle === 'annual') {
+    document.getElementById('sb-plan-price').innerHTML = '$' + d.annual + '<span style="font-size:13px;font-weight:600;color:var(--gray)">/mo</span>';
+    document.getElementById('sb-billing-label').textContent = 'Billed annually';
+    document.getElementById('sb-total-label').textContent = 'Total due today';
+    document.getElementById('sb-total-price').textContent = '$' + d.annualTotal.toLocaleString();
+    document.getElementById('sb-note').textContent = 'Billed annually · Cancel anytime · No contracts';
+    document.getElementById('sb-savings-badge').style.display = 'flex';
+    document.getElementById('sb-savings-badge').textContent = '✓ You\'re saving $' + d.annualSave.toLocaleString() + ' with annual billing';
+  } else {
+    document.getElementById('sb-plan-price').innerHTML = '$' + d.monthly + '<span style="font-size:13px;font-weight:600;color:var(--gray)">/mo</span>';
+    document.getElementById('sb-billing-label').textContent = 'Billed monthly';
+    document.getElementById('sb-total-label').textContent = 'Due each month';
+    document.getElementById('sb-total-price').textContent = '$' + d.monthly + '/mo';
+    document.getElementById('sb-note').textContent = 'Billed monthly · Cancel anytime · No contracts';
+    document.getElementById('sb-savings-badge').style.display = 'flex';
+    document.getElementById('sb-savings-badge').style.background = 'rgba(107,114,128,0.1)';
+    document.getElementById('sb-savings-badge').style.color = 'var(--gray)';
+    document.getElementById('sb-savings-badge').style.borderColor = 'rgba(107,114,128,0.15)';
+    document.getElementById('sb-savings-badge').textContent = 'Switch to annual to save $' + d.annualSave.toLocaleString() + '/yr';
+  }
+
+  // features
+  const feats = document.getElementById('sb-features');
+  feats.innerHTML = d.features.map(f => `<div class="sc-feat"><span class="sc-feat-check">✓</span>${f}</div>`).join('');
+}
+
+// ─── STEP NAVIGATION ──────────────────────────────────────────────────────────
+function goToStep(step) {
+  // Step 1 → 2
+  if (step === 2) {
+    setStepDone(1);
+    setStepActive(2);
+    document.getElementById('pline1').classList.add('done');
+    document.getElementById('s1sub').textContent = planData[selectedPlan].name + ' · ' + (billingCycle === 'annual' ? 'Annual' : 'Monthly');
+    window.scrollTo({top: document.getElementById('step2card').offsetTop - 20, behavior: 'smooth'});
+  }
+  // Step 2 → 3
+  if (step === 3) {
+    const fname = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    if (!fname || !email || !phone) {
+      alert('Please fill in your name, email, and phone number to continue.');
+      return;
+    }
+    setStepDone(2);
+    setStepActive(3);
+    document.getElementById('pline2').classList.add('done');
+    document.getElementById('s2sub').textContent = fname + ' · ' + email;
+    updateConfirmSummary();
+    // show annual bump if on monthly
+    const bump = document.getElementById('annual-bump-box');
+    if (billingCycle === 'monthly' && selectedPlan !== 'enterprise') {
+      bump.style.display = 'block';
+      const d = planData[selectedPlan];
+      document.getElementById('ab-save-amount').textContent = '$' + d.annualSave.toLocaleString();
+      document.getElementById('ab-annual-price').innerHTML = '$' + d.annual + '<span style="font-size:14px;font-family:\'Cabinet Grotesk\',sans-serif;color:rgba(255,255,255,0.5)">/mo</span>';
+      document.getElementById('ab-monthly-price').textContent = '$' + d.monthly + '/mo';
+      document.getElementById('ab-save-badge').textContent = 'Save $' + d.annualSave.toLocaleString() + '/yr';
+    } else {
+      bump.style.display = 'none';
+    }
+    window.scrollTo({top: document.getElementById('step3card').offsetTop - 20, behavior: 'smooth'});
+  }
+}
+
+function setStepDone(n) {
+  document.getElementById('step' + n + 'card').classList.remove('active');
+  document.getElementById('step' + n + 'card').classList.add('done');
+  document.getElementById('si' + n).classList.remove('active');
+  document.getElementById('si' + n).classList.add('done');
+  document.getElementById('si' + n).innerHTML = '✓';
+  document.getElementById('pn' + n).classList.remove('active');
+  document.getElementById('pn' + n).classList.add('done');
+  document.getElementById('pn' + n).innerHTML = '✓';
+  document.getElementById('pl' + n).classList.remove('active');
+  document.getElementById('pl' + n).classList.add('done');
+}
+
+function setStepActive(n) {
+  document.getElementById('step' + n + 'card').classList.remove('locked');
+  document.getElementById('step' + n + 'card').classList.add('active');
+  document.getElementById('si' + n).classList.remove('inactive');
+  document.getElementById('si' + n).classList.add('active');
+  document.getElementById('pn' + n).classList.remove('inactive');
+  document.getElementById('pn' + n).classList.add('active');
+  document.getElementById('pl' + n).classList.remove('inactive');
+  document.getElementById('pl' + n).classList.add('active');
+}
+
+function updateConfirmSummary() {
+  const d = planData[selectedPlan];
+  const isAnnual = billingCycle === 'annual' || annualBumpChecked;
+  document.getElementById('cs-plan').textContent = d.name;
+  document.getElementById('cs-billing').textContent = isAnnual ? 'Annual' : 'Monthly';
+  if (selectedPlan === 'enterprise') {
+    document.getElementById('cs-monthly').textContent = 'Custom';
+    document.getElementById('cs-total').textContent = 'Custom quote';
+  } else if (isAnnual) {
+    document.getElementById('cs-monthly').textContent = '$' + d.annual + '/mo';
+    document.getElementById('cs-total').textContent = '$' + d.annualTotal.toLocaleString();
+  } else {
+    document.getElementById('cs-monthly').textContent = '$' + d.monthly + '/mo';
+    document.getElementById('cs-total').textContent = '$' + d.monthly + '/mo';
+  }
+}
+
+// ─── ANNUAL BUMP TOGGLE ───────────────────────────────────────────────────────
+function toggleAnnualBump() {
+  annualBumpChecked = !annualBumpChecked;
+  const check = document.getElementById('ab-check');
+  check.classList.toggle('checked', annualBumpChecked);
+  check.innerHTML = annualBumpChecked ? '' : '';
+  if (annualBumpChecked) billingCycle = 'annual';
+  updateConfirmSummary();
+  updateSidebar();
+}
+
+// ─── SUBMIT ───────────────────────────────────────────────────────────────────
+function submitOrder() {
+  const d = planData[selectedPlan];
+  const isAnnual = billingCycle === 'annual';
+  const fname = document.getElementById('fname').value.trim() || 'Customer';
+
+  // Hide steps, show success
+  ['step1card','step2card','step3card'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  const s = document.getElementById('successScreen');
+  s.classList.add('show');
+  s.style.display = 'block';
+  document.getElementById('sd-plan').textContent = d.name;
+  document.getElementById('sd-billing').textContent = isAnnual ? 'Annual' : 'Monthly';
+  document.getElementById('sd-conf').textContent = '#NRA-' + Date.now().toString().slice(-6);
+  document.getElementById('sd-total').textContent = selectedPlan === 'enterprise' ? 'Custom' : (isAnnual ? '$' + d.annualTotal.toLocaleString() : '$' + d.monthly + '/mo');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  // Update progress to all done
+  [1,2,3].forEach(n => {
+    document.getElementById('pn'+n).classList.remove('active','inactive');
+    document.getElementById('pn'+n).classList.add('done');
+    document.getElementById('pn'+n).innerHTML = '✓';
+    document.getElementById('pl'+n).classList.remove('active','inactive');
+    document.getElementById('pl'+n).classList.add('done');
+  });
+  document.getElementById('pline1').classList.add('done');
+  document.getElementById('pline2').classList.add('done');
+}
+
+// Init
+updatePriceDisplays();
+updateSidebar();
+</script>
+</body>
+</html>
