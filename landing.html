@@ -57,8 +57,8 @@ a{text-decoration:none;color:inherit}
 .btn-secondary{background:transparent;color:var(--white);padding:17px 44px;border-radius:10px;font-weight:800;font-size:17px;border:2px solid rgba(255,255,255,0.2);cursor:pointer;transition:all 0.25s;font-family:'Cabinet Grotesk',sans-serif;letter-spacing:-0.3px}
 .btn-secondary:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.4);transform:translateY(-2px)}
 .hero-note{font-size:13px;color:rgba(255,255,255,0.28);font-weight:600;margin-bottom:60px}
-.hero-stats{display:flex;gap:0;justify-content:center;padding-top:44px;border-top:1px solid rgba(255,255,255,0.08);flex-wrap:wrap}
-.hero-stat{padding:0 36px;text-align:center;border-right:1px solid rgba(255,255,255,0.08)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding-top:44px;border-top:1px solid rgba(255,255,255,0.08);width:100%}
+.hero-stat{padding:0;text-align:center;border-right:1px solid rgba(255,255,255,0.08)}
 .hero-stat:last-child{border-right:none}
 .hs-num{font-family:'Instrument Serif',serif;font-size:36px;color:var(--white);line-height:1}
 .hs-label{font-size:11px;color:rgba(255,255,255,0.3);margin-top:4px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px}
@@ -378,8 +378,9 @@ footer p{font-size:12px;color:rgba(255,255,255,0.25)}
   <div class="hero-inner">
     <div class="hero-eyebrow"><span>⚡ The Only Agency That Does Both</span></div>
     <p class="hero-h1">Ready To Stop Missing Calls?</p>
-    <p class="hero-sub-head">24/7 Live Agents &amp; <span>AI Receptionists</span> for Your Business.</p>
-    <p class="hero-body">NR Admin's 100+ trained specialists answer your calls, book appointments, and nurture your leads — becoming a seamless extension of your team. We handle all the setup.</p>
+    <p class="hero-sub-head">24/7 <span>AI Receptionists</span> for Your Business.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.45);font-family:'Cabinet Grotesk',sans-serif;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;margin-top:-16px;">Backed by Real Humans.</p>
+    <p class="hero-body">Deploy AI agents that answer calls, book appointments, and nurture leads 24/7 — then back them with real human specialists when it matters most. You choose: full AI, full human, or the hybrid that's converting at 90%+ for our clients. We handle every bit of the setup.</p>
     <div class="hero-checks-row">
       <div class="hcr"><div class="hcr-dot">✓</div>Zero tech headaches</div>
       <div class="hcr"><div class="hcr-dot">✓</div>Live within 48 hours</div>
@@ -400,80 +401,6 @@ footer p{font-size:12px;color:rgba(255,255,255,0.25)}
   </div>
 </div>
 
-<!-- EMBEDDED FORM — right below hero, same dark background so it flows -->
-<div class="hero-form-section">
-  <div class="hero-form-card">
-    <div class="hfc-urgency"><div class="hfc-udot"></div>We only onboard 5 new clients per month — <strong>3 spots remaining this month</strong></div>
-    <div class="hfc-tag"><span>🎯 Free 30-min discovery call</span></div>
-    <div class="hfc-title">Let's get you set up — 3 quick fields.</div>
-    <div class="hfc-sub">Tell us about your business. We'll call you within 1 business hour, no automated emails, no sales pitch.</div>
-    <div class="hfc-row">
-      <div class="hfg">
-        <label>Your name</label>
-        <input type="text" placeholder="Angela Smith" />
-      </div>
-      <div class="hfg">
-        <label>Best phone number</label>
-        <input type="tel" placeholder="(555) 000-0000" />
-      </div>
-    </div>
-    <div class="hfg">
-      <label>Type of business</label>
-      <select>
-        <option value="">Choose your industry</option>
-        <option>Legal / Law Firm</option>
-        <option>Home Services (HVAC, Plumbing, etc.)</option>
-        <option>Medical &amp; Wellness / Med Spa</option>
-        <option>Real Estate</option>
-        <option>Financial Services</option>
-        <option>Marketing &amp; Consulting</option>
-        <option>Staffing Agency</option>
-        <option>Other</option>
-      </select>
-    </div>
-    <button class="hfc-btn">Claim My Free Call ↗</button>
-    <div class="hfc-reassure">
-      <div class="hfc-r"><span class="hfc-r-check">✓</span>No commitment</div>
-      <div class="hfc-r"><span class="hfc-r-check">✓</span>Live in 48 hrs</div>
-      <div class="hfc-r"><span class="hfc-r-check">✓</span>We handle all setup</div>
-      <div class="hfc-r"><span class="hfc-r-check">✓</span>No contracts</div>
-    </div>
-  </div>
-</div>
-
-<!-- URGENCY BAR -->
-<div class="urgency-bar">
-  <div class="urgency-inner">
-    <div class="urgency-dot"></div>
-    <span>We only onboard <span class="urgency-strong">5 new clients per month</span> — <span class="urgency-strong">3 spots remaining</span> this month. Next availability fills fast.</span>
-  </div>
-</div>
-
-<!-- HERO SOCIAL PROOF STRIP — one testimonial right below the fold -->
-<div class="hero-proof-strip">
-  <div class="hps-quote">
-    <img class="hps-avatar" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=88&h=88&fit=crop&crop=face" alt="James M." />
-    <div>
-      <div class="hps-text">"Call capture went from 60% to over 90% in the first month."</div>
-      <div class="hps-name">James M. · Personal Injury Law Firm, LA</div>
-    </div>
-  </div>
-  <div class="hps-divider"></div>
-  <div class="hps-quote">
-    <img class="hps-avatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=88&h=88&fit=crop&crop=face" alt="Sarah R." />
-    <div>
-      <div class="hps-text">"Consultation bookings nearly doubled. Best investment we've ever made."</div>
-      <div class="hps-name">Sarah R. · Med Spa Owner, Beverly Hills</div>
-    </div>
-  </div>
-</div>
-<div class="trust-band">
-  <div class="tb-item">✓ No long-term contracts</div>
-  <div class="tb-item">✓ HIPAA compliant</div>
-  <div class="tb-item">✓ We set everything up</div>
-  <div class="tb-item">✓ Works with any CRM</div>
-  <div class="tb-item">✓ Live within 48 hours</div>
-</div>
 
 <!-- WHAT MAKES US UNIQUE: 5-SECOND VERSION -->
 <div class="five-sec-wrap">
@@ -751,9 +678,9 @@ footer p{font-size:12px;color:rgba(255,255,255,0.25)}
   <div class="eyebrow-mustard">Client Stories</div>
   <div class="sh2-white">Businesses that trust NR Admin.</div>
   <div class="testi-grid">
-    <div class="testi-card"><div class="stars">★★★★★</div><div class="testi-q">"Our call capture rate went from 60% to over 90% in the first month. Our clients don't even realize they're not talking to our in-house staff."</div><div class="testi-auth"><img class="ta-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=88&h=88&fit=crop&crop=face" alt="James M." /><div><div class="ta-name">James M.</div><div class="ta-role">Personal Injury Law Firm, LA</div></div></div></div>
-    <div class="testi-card"><div class="stars">★★★★★</div><div class="testi-q">"Outbound follow-up is now on autopilot and our consultation bookings have nearly doubled. NR Admin is one of the best investments we've ever made."</div><div class="testi-auth"><img class="ta-photo" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=88&h=88&fit=crop&crop=face" alt="Sarah R." /><div><div class="ta-name">Sarah R.</div><div class="ta-role">Med Spa Owner, Beverly Hills</div></div></div></div>
-    <div class="testi-card"><div class="stars">★★★★★</div><div class="testi-q">"They had us live in two days. The agents know our business cold and the hourly reports mean I always know exactly what's happening. It just works."</div><div class="testi-auth"><img class="ta-photo" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=88&h=88&fit=crop&crop=face" alt="David K." /><div><div class="ta-name">David K.</div><div class="ta-role">HVAC Company, Southern California</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><div class="testi-q">"Our call capture rate went from 60% to over 90% in the first month. Our clients don't even realize they're not talking to our in-house staff."</div><div class="testi-auth"><div class="ta-av" style="background:var(--mustard);color:var(--navy)">JM</div><div><div class="ta-name">James M.</div><div class="ta-role">Personal Injury Law Firm, LA</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><div class="testi-q">"Outbound follow-up is now on autopilot and our consultation bookings have nearly doubled. NR Admin is one of the best investments we've ever made."</div><div class="testi-auth"><div class="ta-av" style="background:var(--teal-bright);color:var(--navy)">SR</div><div><div class="ta-name">Sarah R.</div><div class="ta-role">Med Spa Owner, Beverly Hills</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><div class="testi-q">"They had us live in two days. The agents know our business cold and the hourly reports mean I always know exactly what's happening. It just works."</div><div class="testi-auth"><div class="ta-av" style="background:var(--mustard-dark);color:var(--white)">DK</div><div><div class="ta-name">David K.</div><div class="ta-role">HVAC Company, Southern California</div></div></div></div>
   </div>
 </section>
 
@@ -778,7 +705,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.25)}
     <div class="flip-card">
       <div class="flip-inner">
         <div class="flip-front">
-          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop&crop=face" alt="Summer" />
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1A2E4A 0%,#0D1B2E 100%);display:flex;align-items:center;justify-content:center;font-size:64px">👩</div>
           <div class="flip-hover-hint">hover me</div>
           <div class="flip-front-overlay">
             <div class="flip-name">Summer T.</div>
@@ -801,7 +728,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.25)}
     <div class="flip-card">
       <div class="flip-inner">
         <div class="flip-front">
-          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop&crop=face" alt="Marcus" />
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#1E7068 0%,#0D1B2E 100%);display:flex;align-items:center;justify-content:center;font-size:64px">👨</div>
           <div class="flip-hover-hint">hover me</div>
           <div class="flip-front-overlay">
             <div class="flip-name">Marcus R.</div>
@@ -824,7 +751,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.25)}
     <div class="flip-card">
       <div class="flip-inner">
         <div class="flip-front">
-          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face" alt="Priya" />
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#C8850A 0%,#0D1B2E 100%);display:flex;align-items:center;justify-content:center;font-size:64px">👩</div>
           <div class="flip-hover-hint">hover me</div>
           <div class="flip-front-overlay">
             <div class="flip-name">Priya K.</div>
@@ -847,7 +774,7 @@ footer p{font-size:12px;color:rgba(255,255,255,0.25)}
     <div class="flip-card">
       <div class="flip-inner">
         <div class="flip-front">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Derek" />
+          <div style="width:100%;height:100%;background:linear-gradient(135deg,#C94F2C 0%,#0D1B2E 100%);display:flex;align-items:center;justify-content:center;font-size:64px">👨</div>
           <div class="flip-hover-hint">hover me</div>
           <div class="flip-front-overlay">
             <div class="flip-name">Derek A.</div>
